@@ -24,9 +24,9 @@ A Telco vem enfrentando desafios na retenção de clientes, com um aumento signi
     **4.** Informações demográficas dos clientes – gênero, faixa etária e se possuem parceiros ou dependentes.
 
 ## Desenvolvimento do projeto
-- **Importações**: importações de bibliotecas e pacotes, definição de configurações e carregamento dos dados;
-- **Descrição dos dados**: apresenta-se o dataset, suas dimensões, colunas com descrições, tipos de dados;
-- **Pré-processamento e exploração**: renomeação das colunas, verificação de dados faltantes e utilização do método SimpleImputer para preencher valores ausentes (NaNs), ajuste dos tipos de dados conforme necessário, identificação de linhas duplicadas e análise de valores únicos.
+- **Importações**: Importações de bibliotecas e pacotes, definição de configurações e carregamento dos dados;
+- **Descrição dos dados**: Apresenta-se o dataset, suas dimensões, colunas com descrições, tipos de dados;
+- **Pré-processamento e exploração**: Renomeação das colunas, verificação de dados faltantes e utilização do método SimpleImputer para preencher valores ausentes (NaNs), ajuste dos tipos de dados conforme necessário, identificação de linhas duplicadas e análise de valores únicos.
 - **Análise exploratória dos dados (EDA)**: Nesta etapa, o objetivo é visualizar e comparar as principais variáveis, interpretando os resultados para responder a questões relacionadas ao churn. Além disso, foram aplicadas técnicas estatísticas para organizar e exibir a relação entre duas ou mais variáveis categóricas, incluindo o teste do qui-quadrado, que verifica se há uma associação significativa entre elas. Dessa forma, as principais conclusões da Análise Exploratória dos Dados (EDA) foram:
 
   **1.** Na variável target, observa-se que a maioria dos clientes permanece com o serviço (73,6%), enquanto 26,4% cancelaram. No entanto, esse conjunto de dados está desbalanceado, o que pode impactar o treinamento dos modelos de Machine Learning, fazendo com que a previsão tenda a classificar mais clientes como "não churn".
@@ -57,5 +57,9 @@ Isso pode ocorrer porque a decisão de cancelamento não depende exclusivamente 
      - **Suporte Técnico x Churn:** A análise indica que clientes sem suporte técnico apresentam uma alta taxa de churn, enquanto aqueles que possuem esse serviço têm taxas significativamente menores. Isso sugere que o suporte técnico pode ser um fator importante na retenção de clientes.
      - **Segurança Online x Churn:** Clientes que não possuem segurança online apresentam uma taxa de churn muito maior em comparação com aqueles que possuem esse serviço. Isso sugere que a segurança online pode agregar valor ao serviço e contribuir para a retenção de clientes.
   ![image](https://github.com/user-attachments/assets/5e327ef1-3855-436f-b8a6-2f38ef19434b)
+- **Feature Engineering**: Nesta etapa, aplicamos o método LabelEncoder() às variáveis categóricas para convertê-las em valores numéricos. Além disso, utilizamos o mapa de correlação e o método VIF (Variance Inflation Factor) para identificar correlações entre as variáveis e verificar a presença de multicolinearidade, permitindo selecionar as mais relevantes para os modelos de Machine Learning. O conjunto de dados foi dividido em treino e teste, e o método SMOTE foi aplicado aos dados de treino para balancear as classes. Por fim, realizamos o escalonamento das variáveis com MinMaxScaler para garantir que todas fiquem na mesma escala.
+- **Machine Learning**: os seguintes modelos de ML foram testados e avaliados a partir das métricas: Acurácia, Precisão, Recall, F1 Score, ROC AUC, Cross-Val ROC AUC, Classification Report e Matriz de Confusão.
 
-
+     - LightLGBM, Random Forest, Logistic Regression, Decision Tree, KNN, XGBoost.
+     - Os modelos LightGBM, Random Forest e XGBoost apresentaram as melhores performances e foram selecionados para aplicação de Cross-Validation e Hyperparameter Tuning.
+     - Após a otimização dos hiperparâmetros utilizando RandomizedSearchCV e a comparação dos modelos por meio das curvas ROC e Precision-Recall, o modelo LightGBM demonstrou um bom equilíbrio entre recall e precision, além de bons resultados nas métricas avaliadas. Dessa forma, foi considerado o modelo de melhor desempenho geral.
