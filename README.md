@@ -1,7 +1,7 @@
 # customer-churn-analysis
 A Telco vem enfrentando desafios na retenção de clientes, com um aumento significativo na taxa de churn nos últimos períodos. Esse problema impacta diretamente a receita da empresa, tornando essencial identificar os principais fatores que levam ao cancelamento dos serviços e implementar estratégias eficazes de retenção.
 
-## Descrição da empresa e o problema
+## Descrição da empresa e seu problema
 - Telco é uma empresa de telefonia que oferece planos de internet, streaming e serviços de segurança online. No entanto, tem enfrentado dificuldades com a alta rotatividade de clientes.
 - O principal desafio na retenção de clientes é identificar os motivos que influenciam a decisão de cancelamento do serviço. Diante disso, os colaboradores da empresa precisam treinar um algoritmo para identificar os clientes com alta probabilidade de churn.
 - Assim, após a classificação, é possível entrar em contato com os clientes insatisfeitos para oferecer promoções e dar discontos, de maneira que a empresa melhore a sua relação com eles.
@@ -63,3 +63,14 @@ Isso pode ocorrer porque a decisão de cancelamento não depende exclusivamente 
      - LightLGBM, Random Forest, Logistic Regression, Decision Tree, KNN, XGBoost.
      - Os modelos LightGBM, Random Forest e XGBoost apresentaram as melhores performances e foram selecionados para aplicação de Cross-Validation e Hyperparameter Tuning.
      - Após a otimização dos hiperparâmetros utilizando RandomizedSearchCV e a comparação dos modelos por meio das curvas ROC e Precision-Recall, o modelo LightGBM demonstrou um bom equilíbrio entre recall e precision, além de bons resultados nas métricas avaliadas. Dessa forma, foi considerado o modelo de melhor desempenho geral.
+
+## Conclusões do Projeto
+- Durante a análise, foi possível identificar as principais variáveis que contribuem para o cancelamento dos clientes. Entre elas, destaca-se MonthlyCharges, indicando que clientes que pagam mensalidades mais altas têm maior probabilidade de cancelar o serviço. Além disso, a variável PaymentMethod, especialmente o método de pagamento via cheque eletrônico, está associada a uma alta taxa de churn, possivelmente devido a dificuldades que os clientes enfrentam com esse tipo de pagamento. Outra variável importante é Contract, que apresenta uma alta taxa de churn no plano mensal, sugerindo que muitos clientes assinam o serviço e cancelam nos primeiros meses, demonstrando uma baixa fidelização.
+- Diante dessas informações, a empresa poderia adotar estratégias para reduzir o churn, como oferecer descontos nas mensalidades e incentivar métodos de pagamento mais estáveis, como transferência bancária e cartão de crédito, que são processados automaticamente e podem ajudar a evitar cancelamentos. Além disso, a implementação de programas de fidelidade pode ser uma abordagem eficaz para aumentar a retenção de clientes, uma vez que a variável Tenure indica que clientes que permanecem por mais tempo no serviço têm menor risco de churn.
+
+## Avaliação da Precisão do Modelo
+- Após ajustes e comparações entre diferentes modelos, o LightGBM se destacou como a melhor opção para a previsão de churn. Com uma acurácia de 89%, o modelo demonstra uma alta capacidade preditiva no conjunto de dados analisado. Além disso, ao observar as métricas de precisão e recall, percebe-se um bom equilíbrio:
+
+     - Classe 0 (Clientes que não cancelaram): O modelo atingiu 91% de precisão e 95% de recall, indicando que consegue prever corretamente a maioria dos clientes que permanecem ativos.
+     - Classe 1 (Clientes que cancelaram): O recall de 73% sugere que o modelo consegue identificar a maior parte dos clientes propensos ao churn, enquanto a precisão de 84% indica uma taxa de acerto razoável ao prever cancelamentos.
+- A média ponderada das métricas reforça a consistência do modelo, com um F1-score geral de 89%, mostrando que ele equilibra bem precisão e recall, minimizando erros críticos.
